@@ -14,8 +14,8 @@ const UserController = {
 
             // Log the user in immediately after registration by setting the session userId
             req.session.userId = newUser.id;
-            // Redirect to the homepage or dashboard
-            res.redirect('/dashboard');
+            // Redirect to the homepage
+            res.redirect('/');
         } catch (error) {
             // Render the registration page with an error message
             res.status(500).render('register', { errorMessage: "Failed to register user" });
