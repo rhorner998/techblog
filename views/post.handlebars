@@ -1,0 +1,30 @@
+<article class="post">
+    <h1>{{post.title}}</h1>
+    <p>{{post.content}}</p>
+    <footer>
+        <p>Posted by {{post.user.username}} on {{formatDate post.createdAt}}</p>
+    </footer>
+</article>
+
+<section class="comments">
+    <h2>Comments</h2>
+    {{#if post.comments.length}}
+        <ul>
+            {{#each post.comments as |comment|}}
+            <li>
+                <p>{{comment.content}}</p>
+                <p>Comment by {{comment.user.username}} on {{formatDate comment.createdAt}}</p>
+            </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No comments yet. Be the first to comment!</p>
+    {{/if}}
+
+    {{#if loggedIn}}
+    <form action="/posts/{{post.id}}/comments" method="POST">
+        <textarea name="commentContent" required placeholder="Add a comment..."></textarea>
+        <button type="submit">Submit Comment</button>
+    </form>
+    {{/if}}
+</section>

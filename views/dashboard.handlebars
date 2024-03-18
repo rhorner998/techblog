@@ -1,0 +1,22 @@
+{{!-- dashboard.handlebars --}}
+
+<link rel="stylesheet" href="/dashboard.css">
+
+{{#if posts.length}}
+  <div class="posts-list">
+    {{#each posts}}
+      <div class="post-entry">
+        <h2>{{this.title}}</h2>
+        <p>{{this.content}}</p>
+        <a href="/posts/edit/{{this.id}}" class="btn edit-btn">Edit</a>
+        <form action="/posts/delete/{{this.id}}" method="POST" class="inline-form">
+          <button type="submit" class="btn delete-btn">Delete</button>
+        </form>
+      </div>
+    {{/each}}
+  </div>
+{{else}}
+  <p>You have no posts yet.</p>
+{{/if}}
+
+<a href="/posts/new" class="btn new-post-btn">+ New Post</a>

@@ -1,0 +1,115 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+  margin-bottom: 20px; /* Add space between header and post content */
+}
+
+header nav ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+header nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+header nav ul li a:hover {
+  background-color: #555;
+}
+
+/* Style for the container that wraps all posts */
+.container {
+  background-color: white;
+  width: 80%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for each individual post */
+.post {
+  border-bottom: 1px solid #eaeaea;
+  padding: 20px 0;
+}
+
+.post:last-child {
+  border-bottom: none;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.post-title {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.post-title-link {
+  color: #333; /* Match the color of the post titles */
+  text-decoration: none;
+}
+
+.post-title-link:hover {
+  color: #000; /* Darken the color slightly on hover */
+}
+
+.post-date-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.post-content {
+  margin-top: 10px;
+  color: #333;
+}
+
+.no-posts {
+  text-align: center;
+  padding: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #333;
+  color: white;
+  margin-top: 20px; /* Add space between the content and footer */
+}
+
+.btn {
+  display: inline-block;
+  background-color: #ffc107;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none; /* In case .btn is used on an <a> element */
+}
+
+.btn:hover {
+  background-color: #e0a800;
+}

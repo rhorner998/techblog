@@ -1,0 +1,69 @@
+/* dashboard.css */
+.posts-list {
+    margin: 20px;
+  }
+  
+  .post-entry {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  
+  .post-entry h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .post-entry p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .post-entry .btn {
+    padding: 10px 15px;
+    margin-right: 5px;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .edit-btn {
+    background-color: #f0ad4e;
+    color: white;
+  }
+  
+  .delete-btn {
+    background-color: #d9534f;
+    color: white;
+  }
+  
+  .new-post-btn {
+    background-color: #5cb85c;
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    width: max-content;
+    margin: 20px auto;
+    text-align: center;
+  }
+  
+  /* Additional styles for hover effects */
+  .btn:hover {
+    opacity: 0.8;
+  }
+
+  .inline-form {
+    display: inline-block;
+  }  
+  
+  /* Additional responsive adjustments if necessary */
+  @media (max-width: 768px) {
+    .post-entry .btn {
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+  

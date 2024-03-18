@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tech Blog</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <nav class="navigation-menu">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    {{#if loggedIn}}
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li>
+                        <form action="/users/logout" method="POST" style="display: inline;">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </li>
+                    {{else}}
+                    <li><a href="/users/login">Login</a></li>
+                    {{/if}}
+                </ul>
+            </nav>
+            <div class="blog-title">The Tech Blog</div>
+        </div>
+    </header>
+    
+    <main class="site-content">
+        {{{body}}}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 The Tech Blog</p>
+    </footer>
+</body>
+</html>

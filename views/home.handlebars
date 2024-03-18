@@ -1,0 +1,21 @@
+{{!-- The homepage should list posts without providing edit/delete options --}}
+<head>
+  <link rel="stylesheet" href="/home-styles.css">
+</head>
+
+<div class="posts-container">
+  {{#each posts}}
+    <div class="post">
+      <div class="post-header">
+        <!-- Make the post title a link to the post's detail page -->
+        <h2 class="post-title"><a href="/posts/{{this.id}}">{{this.title}}</a></h2>
+        <div class="post-date-author">
+          <span class="post-date">{{formatDate this.createdAt "MMM dd, yyyy"}}</span>
+          <span class="post-author">Posted by {{this.User.username}}</span>
+        </div>
+      </div>
+    </div>
+  {{else}}
+    <p class="no-posts">No posts to display.</p>
+  {{/each}}
+</div>

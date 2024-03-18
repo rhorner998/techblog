@@ -1,0 +1,22 @@
+<!-- post-detail.handlebars -->
+<div class="post-detail">
+  <h1>{{post.title}}</h1>
+  <p>{{post.content}}</p>
+  <div class="comments">
+    <h2>Comments</h2>
+    {{#each post.Comments}}
+      <div class="comment">
+        <p>{{this.commentText}}</p>
+        <span>Commented by {{this.User.username}}</span>
+      </div>
+    {{else}}
+      <p>No comments yet.</p>
+    {{/each}}
+  </div>
+  <div class="comment-form">
+    <form action="/posts/{{post.id}}/comments" method="POST">
+      <textarea name="commentContent" required placeholder="Enter your comment here..."></textarea>
+      <button type="submit">Post Comment</button>
+    </form>
+  </div>
+</div>
