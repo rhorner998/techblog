@@ -17,7 +17,7 @@ const UserController = {
             // Set loggedIn flag to true
             res.locals.loggedIn = true;
             // Redirect to the homepage
-            res.redirect('/');
+            res.redirect('/dashboard');
         } catch (error) {
             // Render the registration page with an error message
             res.status(500).render('register', { errorMessage: "Failed to register user" });
