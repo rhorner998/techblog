@@ -14,6 +14,8 @@ const UserController = {
 
             // Log the user in immediately after registration by setting the session userId
             req.session.userId = newUser.id;
+            // Set loggedIn flag to true
+            res.locals.loggedIn = true;
             // Redirect to the homepage
             res.redirect('/');
         } catch (error) {
@@ -29,6 +31,8 @@ const UserController = {
             const user = await User.findOne({ where: { username } });
             if (user && await bcrypt.compare(password, user.password)) {
                 req.session.userId = user.id;
+                // Set loggedIn flag to true
+                res.locals.loggedIn = true;
                 // Redirect to the homepage or dashboard after login
                 res.redirect('/');
             } else {
