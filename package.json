@@ -2,8 +2,9 @@
   "name": "cms",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js", 
   "scripts": {
+    "start": "node server.js", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,8 +19,12 @@
     "express-handlebars": "^7.1.2",
     "express-list-endpoints": "^6.0.0",
     "express-session": "^1.18.0",
+    "heroku": "^8.10.0",
     "mongoose": "^8.2.1",
     "mysql2": "^3.9.2",
     "sequelize": "^6.37.1"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
