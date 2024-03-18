@@ -34,7 +34,7 @@ const UserController = {
                 // Set loggedIn flag to true
                 res.locals.loggedIn = true;
                 // Redirect to the homepage or dashboard after login
-                res.redirect('/');
+                res.redirect('/dashboard');
             } else {
                 // Render the login page with an error message
                 res.status(401).render('login', { errorMessage: "Invalid credentials" });
