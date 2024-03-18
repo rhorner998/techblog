@@ -37,7 +37,7 @@ User.init({
   sequelize,
   modelName: 'User',
   freezeTableName: true, // This option is false by default, making Sequelize look for a table named 'Users' in plural
-  tableName: 'Users', // Explicitly setting table name to 'Users' to match your schema
+  tableName: 'users', // Explicitly setting table name to 'Users' to match your schema
   timestamps: true, // Sequelize will add the createdAt and updatedAt fields
   underscored: false, // If you want to use underscored fields in Sequelize instead of camelCasing
 });
