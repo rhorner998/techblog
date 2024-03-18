@@ -1,10 +1,11 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
+const { Post, User } = require('../models');
+
 const postRoutes = require('./postroutes');
 const commentRoutes = require('./commentroutes');
 const userRoutes = require('./userroutes');
 const dashboardRoutes = require('./dashboardroutes');
-const { Post , User} = require('../models');
-const UserController = require('../controllers/usercontroller');
 
 // Mount other routers
 router.use('/posts', postRoutes);
@@ -33,11 +34,11 @@ router.get('/', async (req, res) => {
     }
 });
 
-// catch-all 
+// Catch-all route to handle undefined routes
 router.use((req, res) => {
     console.log(`Wrong Route Accessed: ${req.path}`); // Log the wrong route accessed
-    res.send("<h1>Wrong Route!</h1>")
+    // Redirect to the home page if the route is not found
+    res.redirect('/');
 });
-
 
 module.exports = router;
