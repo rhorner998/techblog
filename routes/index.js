@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 
         // Convert each post model instance to a plain object
         const plainPosts = posts.map(post => post.get({ plain: true }));
-        console.log(plainPosts); // Log the plain objects to confirm
+        // console.log(plainPosts); // Log the plain objects to confirm
         res.render('home', { posts: plainPosts });
 
     } catch (error) {

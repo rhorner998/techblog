@@ -67,7 +67,7 @@ router.get('/:id', async (req, res) => {
           const postData = post.get({ plain: true });
 
           // Log the post data structure to understand its layout
-          console.log(JSON.stringify(postData, null, 2)); // Pretty print the object
+        //   console.log(JSON.stringify(postData, null, 2)); // Pretty print the object
 
             res.render('post-detail', { 
                 post: post.get({ plain: true }),

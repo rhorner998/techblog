@@ -4,6 +4,7 @@ const handlebarsHelpers = require('./helpers/handlebars-helpers');
 const session = require('express-session');
 const path = require('path');
 const routes = require('./routes');
+const { ensureAuthenticated, redirectIfAuthenticated } = require('./middleware/authmiddleware');
 
 const app = express();
 
@@ -39,16 +40,16 @@ app.use(session({
     }
 }));
 
-app.use((req, res, next) => {
-    console.log(req.path);
-    next();
-});
-
 // Middleware to make 'loggedIn' available to all views
 app.use((req, res, next) => {
     res.locals.loggedIn = !!req.session.userId;
+    console.log(`Request made to: ${req.method} ${req.originalUrl}`); // Log incoming request
     next();
 });
+
+// Apply middleware selectively
+app.use('/users', redirectIfAuthenticated); // Apply redirectIfAuthenticated middleware to all user routes except login
+app.use('/users', ensureAuthenticated); // Apply ensureAuthenticated middleware to all user routes
 
 // Use routes defined in your routes directory
 app.use(routes);

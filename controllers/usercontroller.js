@@ -2,72 +2,78 @@ const bcrypt = require('bcryptjs');
 const { User } = require('../models');
 
 const UserController = {
-    // User registration logic
     async register(req, res) {
         try {
+            console.log('Attempting to register user');
             const { username, password } = req.body;
+            console.log('Received registration request for username:', username);
+            // Hash the password
             const hashedPassword = await bcrypt.hash(password, 12);
+            // Create a new user
             const newUser = await User.create({
                 username,
                 password: hashedPassword,
             });
-
-            // Log the user in immediately after registration by setting the session userId
+            console.log('User registration successful:', newUser);
+            // Set session and redirect to dashboard
             req.session.userId = newUser.id;
-            // Set loggedIn flag to true
             res.locals.loggedIn = true;
-            // Redirect to the homepage
             res.redirect('/dashboard');
         } catch (error) {
-            // Render the registration page with an error message
+            console.error('Error registering user:', error);
             res.status(500).render('register', { errorMessage: "Failed to register user" });
         }
     },
 
-    // User login logic
     async login(req, res) {
         try {
+            console.log('Attempting to log in user');
             const { username, password } = req.body;
+            console.log('Received login request for username:', username);
+            // Find user in the database
             const user = await User.findOne({ where: { username } });
             if (user && await bcrypt.compare(password, user.password)) {
+                console.log('User logged in successfully:', user);
                 req.session.userId = user.id;
-                // Set loggedIn flag to true
                 res.locals.loggedIn = true;
-                // Redirect to the homepage or dashboard after login
                 res.redirect('/dashboard');
             } else {
-                // Render the login page with an error message
+                console.log('Invalid login credentials');
                 res.status(401).render('login', { errorMessage: "Invalid credentials" });
             }
         } catch (error) {
-            // Render the login page with an error message
+            console.error('Error logging in user:', error);
             res.status(500).render('login', { errorMessage: "Failed to log in" });
         }
     },
 
-    // User logout logic
     async logout(req, res) {
-        console.log('Attempting to logout user');
-        req.session.destroy((err) => {
-            if (err) {
-                // Render an error message or redirect with a failure message
-                res.status(500).render('dashboard', { errorMessage: "Failed to log out" });
-            } else {
-                res.clearCookie('connect.sid'); // Assuming 'connect.sid' is the name of your session cookie
-                // Redirect to the login page after logout
-                res.redirect('/');
-            }
-        });
+        try {
+            console.log('Attempting to logout user');
+            req.session.destroy((err) => {
+                if (err) {
+                    console.error('Error logging out user:', err);
+                    res.status(500).render('dashboard', { errorMessage: "Failed to log out" });
+                } else {
+                    console.log('User logged out successfully');
+                    res.clearCookie('connect.sid');
+                    res.redirect('/');
+                }
+            });
+        } catch (error) {
+            console.error('Error logging out user:', error);
+            res.status(500).render('dashboard', { errorMessage: "Failed to log out" });
+        }
     },
 
-    // Accessing the user dashboard
     async dashboard(req, res) {
         try {
-            // Assuming you are storing the userId in the session upon login
+            console.log('Accessing dashboard');
             const user = await User.findByPk(req.session.userId);
-            // Render the dashboard page for the user
+            console.log('User retrieved from session:', user);
             res.render('dashboard', { user });
         } catch (error) {
+            console.error('Error accessing dashboard:', error);
             res.status(500).render('dashboard', { errorMessage: "Failed to access dashboard" });
         }
     }

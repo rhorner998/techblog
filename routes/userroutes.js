@@ -1,35 +1,25 @@
 const router = require('express').Router();
 const UserController = require('../controllers/usercontroller');
+const { ensureAuthenticated, redirectIfAuthenticated } = require('../middleware/authmiddleware');
 
-const redirectIfAuthenticated = (req, res, next) => {
-  if (req.session.userId) {
-    return res.redirect('/dashboard');
-  }
-  next();
-};
-
-const ensureAuthenticated = (req, res, next) => {
-  if (!req.session.userId) {
-    return res.redirect('/login');
-  }
-  next();
-};
-
-// Adjust the path if your sign up form action is "/users/register"
+// Register route should not be accessible to authenticated users
 router.post('/register', redirectIfAuthenticated, UserController.register);
 
+// Login route should not be accessible to authenticated users
 router.post('/login', redirectIfAuthenticated, UserController.login);
 
+// Logout route should only be accessible to authenticated users
 router.post('/logout', ensureAuthenticated, UserController.logout);
 
+// Dashboard route should only be accessible to authenticated users
 router.get('/dashboard', ensureAuthenticated, UserController.dashboard);
 
-// Add route for signup page
+// Signup route should not be accessible to authenticated users
 router.get('/signup', redirectIfAuthenticated, (req, res) => {
-  // Make sure to point to the correct template and layout
   res.render('signup', { layout: 'main' });
 });
 
+// Login route should not be accessible to authenticated users
 router.get('/login', redirectIfAuthenticated, (req, res) => {
   res.render('login', { layout: 'main' });
 });
