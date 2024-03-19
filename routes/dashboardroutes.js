@@ -4,7 +4,6 @@ const { Post } = require('../models');
 const PostController = require('../controllers/postcontroller');
 const { ensureAuthenticated } = require('../middleware/authmiddleware');
 
-
 router.get('/', ensureAuthenticated, async (req, res) => {
     try {
         const userPosts = await Post.findAll({
@@ -18,7 +17,6 @@ router.get('/', ensureAuthenticated, async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-
 
 // Route for displaying the form to edit a post
 router.get('/posts/edit/:id', ensureAuthenticated, async (req, res) => {
@@ -38,6 +36,5 @@ router.get('/posts/edit/:id', ensureAuthenticated, async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-
 
 module.exports = router;
