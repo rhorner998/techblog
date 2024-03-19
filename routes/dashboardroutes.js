@@ -14,7 +14,7 @@ router.get('/', ensureAuthenticated, async (req, res) => {
         res.render('dashboard', { posts: userPosts });
     } catch (error) {
         console.error(error);
-        res.status(500).send('Server Error');
+        res.status(500).send('Server Error 1');
     }
 });
 
@@ -33,7 +33,7 @@ router.get('/posts/edit/:id', ensureAuthenticated, async (req, res) => {
         res.render('edit-post', { post: post.get({ plain: true }) }); // Pass the post data to the template
     } catch (error) {
         console.error(error);
-        res.status(500).send('Server Error');
+        res.status(500).send('Server Error 2');
     }
 });
 

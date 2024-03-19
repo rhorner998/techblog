@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).render('error', { message: 'Server Error' }); // Make sure you have an error.handlebars view
+        res.status(500).render('error', { message: 'Server Error 4' }); // Make sure you have an error.handlebars view
     }
 });
 

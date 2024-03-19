@@ -23,7 +23,7 @@ router.get('/edit/:id', ensureAuthenticated, async (req, res) => {
         res.render('edit-post', { post: post.get({ plain: true }) }); // Pass the post data to the template
     } catch (error) {
         console.error(error);
-        res.status(500).send('Server Error');
+        res.status(500).send('Server Error 5');
     }
 });
 
@@ -45,7 +45,7 @@ router.post('/update/:id', ensureAuthenticated, async (req, res) => {
         res.redirect('/dashboard'); // or wherever you wish to redirect after updating
     } catch (error) {
         console.error(error);
-        res.status(500).send('Server Error');
+        res.status(500).send('Server Error 6');
     }
 });
 
@@ -78,7 +78,7 @@ router.get('/:id', async (req, res) => {
         }
     } catch (error) {
         console.error(error);
-        res.status(500).send('Server Error');
+        res.status(500).send('Server Error 7');
     }
 });
 
@@ -94,7 +94,7 @@ router.post('/:id/comments', ensureAuthenticated, async (req, res) => {
         res.redirect(`/posts/${req.params.id}`);
     } catch (error) {
         console.error(error);
-        res.status(500).send('Server Error');
+        res.status(500).send('Server Error 8');
     }
 });
 
