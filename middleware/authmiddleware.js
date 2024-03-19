@@ -10,7 +10,7 @@ const ensureAuthenticated = (req, res, next) => {
       next();
   } else {
       console.log("User is not authenticated. Redirecting to /login.");
-      res.redirect('/login');
+      res.redirect('/users/login');
   }
 };
 

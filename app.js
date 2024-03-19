@@ -48,8 +48,8 @@ app.use((req, res, next) => {
 });
 
 // Apply middleware selectively
-app.use('/users', redirectIfAuthenticated); // Apply redirectIfAuthenticated middleware to all user routes except login
-app.use('/users', ensureAuthenticated); // Apply ensureAuthenticated middleware to all user routes
+// app.use('/users', redirectIfAuthenticated); // Apply redirectIfAuthenticated middleware to all user routes except login
+// app.use('/users', ensureAuthenticated); // Apply ensureAuthenticated middleware to all user routes
 
 // Use routes defined in your routes directory
 app.use(routes);
