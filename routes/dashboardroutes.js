@@ -5,6 +5,7 @@ const PostController = require('../controllers/postcontroller');
 const { ensureAuthenticated } = require('../middleware/authmiddleware');
 
 router.get('/', ensureAuthenticated, async (req, res) => {
+    console.log('In Dashboardroutes.js for get: Session userId:', req.session.userId); // Add this line for debugging    
     try {
         const userPosts = await Post.findAll({
             where: { userId: req.session.userId }

@@ -40,6 +40,14 @@ app.use(session({
     }
 }));
 
+// Logging middleware
+app.use((req, res, next) => {
+    const now = new Date().toISOString();
+    console.log(`${now} - ${req.method} ${req.originalUrl}`);
+    next(); // Pass control to the next handler
+});
+
+
 // Middleware to make 'loggedIn' available to all views
 app.use((req, res, next) => {
     res.locals.loggedIn = !!req.session.userId;

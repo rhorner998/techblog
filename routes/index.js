@@ -7,6 +7,12 @@ const commentRoutes = require('./commentroutes');
 const userRoutes = require('./userroutes');
 const dashboardRoutes = require('./dashboardroutes');
 
+const UserController = require('../controllers/usercontroller'); // Ensure correct path
+
+// Temporary route to test database connection
+router.get('/test-db-connection', UserController.testDbConnection);
+
+
 // Mount other routers
 router.use('/posts', postRoutes);
 router.use('/comments', commentRoutes);

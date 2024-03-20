@@ -25,6 +25,24 @@ const UserController = {
         }
     },
 
+    async testDbConnection(req, res) {
+        try {
+            console.log('Testing database connection...');
+            // Attempt to fetch a single user
+            const user = await User.findOne();
+            if (user) {
+                console.log('Database connection is good. Found a user:', user);
+                res.status(200).send('Database connection is good. Found a user.');
+            } else {
+                console.log('Database connection is good, but no users found.');
+                res.status(404).send('Database connection is good, but no users found.');
+            }
+        } catch (error) {
+            console.error('Database connection test failed:', error);
+            res.status(500).send('Failed to connect to the database.');
+        }
+    },
+
     // async login(req, res) {
     //     try {
     //         console.log('Attempting to log in user');
@@ -59,6 +77,7 @@ const UserController = {
                 console.log('User logged in successfully (for testing):', user);
                 // Directly set the session userId without checking the password
                 req.session.userId = user.id;
+                console.log('In usercontroller.js for login: Session userId:', req.session.userId); // Add this line for debugging                    
                 res.locals.loggedIn = true;
                 res.redirect('/dashboard');
             } else {
