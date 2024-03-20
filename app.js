@@ -41,6 +41,9 @@ app.use(session({
     }
 }));
 
+
+console.log(`Current NODE_ENV: ${process.env.NODE_ENV}`);
+
 // logging sessionb data.
 app.use((req, res, next) => {
     console.log('Session data:', req.session);
