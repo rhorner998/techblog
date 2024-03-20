@@ -36,9 +36,16 @@ app.use(session({
     saveUninitialized: true,
     cookie: { 
         secure: process.env.NODE_ENV === "production",
-        maxAge: 3600000 // 1 hour
+        maxAge: 3600000,
+        sameSite: 'lax'
     }
 }));
+
+// logging sessionb data.
+app.use((req, res, next) => {
+    console.log('Session data:', req.session);
+    next();
+});
 
 // Logging middleware
 app.use((req, res, next) => {
