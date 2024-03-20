@@ -17,11 +17,13 @@
 // disabling it to test
 const ensureAuthenticated = (req, res, next) => {
   console.log("Authentication bypassed in ensureAuthenticated middleware.");
+  console.log("ensureAuthenticated - Session userId:", req.session.userId);
   next();
 };
 
 const redirectIfAuthenticated = (req, res, next) => {
   console.log("Authentication bypassed in redirectIfAuthenticated middleware.");
+  console.log("redirectIfAuthenticated - Session userId:", req.session.userId);
   next();
 };
 
