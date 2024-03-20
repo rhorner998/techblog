@@ -14,7 +14,7 @@ router.get('/', ensureAuthenticated, async (req, res) => {
     console.log('In Dashboardroutes.js for get: Session userId:', req.session.userId);
     try {
         const userPosts = await Post.findAll({
-            where: { userId: req.session.userId }
+            where: { id: req.session.userId }
         });
 
         // Log the count of user posts fetched from the database
