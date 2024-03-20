@@ -20,7 +20,7 @@ router.get('/', ensureAuthenticated, async (req, res) => {
         // Log the count of user posts fetched from the database
         console.log(`Fetched ${userPosts.length} posts for user ID ${req.session.userId}`);
 
-        res.render('dashboard', { posts: userPosts.map(post => post.get({ plain: true })) });
+        res.render('dashboard', { posts: userPosts.map(post => post.get({ plain: true })),  loggedIn: req.session.loggedIn});
     } catch (error) {
         console.error('Error fetching posts for dashboard:', error);
         res.status(500).send('Server Error 1');

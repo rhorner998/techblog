@@ -6,7 +6,7 @@
 </div>
 {{/if}}
 
-<form action="/users/login" method="POST">
+<form id="loginForm">
     <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" required class="form-control">
@@ -21,3 +21,5 @@
 </form>
 
 <p>Don't have an account? <a href="/users/signup">Sign up</a>.</p>
+
+<script src="/js/login.js"></script>

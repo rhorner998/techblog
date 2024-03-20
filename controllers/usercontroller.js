@@ -15,10 +15,15 @@ const UserController = {
                 password: hashedPassword,
             });
             console.log('User registration successful:', newUser);
+
+            req.session.save(()=>{
+                req.session.userId = newUser.id;
+                req.session.loggedIn = true;
+                res.status(200).json(newUser)
+            })
             // Set session and redirect to dashboard
-            req.session.userId = newUser.id;
-            res.locals.loggedIn = true;
-            res.redirect('/dashboard');
+ 
+            //res.redirect('/dashboard');
         } catch (error) {
             console.error('Error registering user:', error);
             res.status(500).render('register', { errorMessage: "Failed to register user" });
@@ -76,19 +81,25 @@ const UserController = {
             if (user) {
                 console.log('User logged in successfully (for testing):', user);
                 // Directly set the session userId without checking the password
-                req.session.userId = user.id;
-                console.log('In usercontroller.js for login: Session userId:', req.session.userId); // Debug logging
+                // req.session.userId = user.id;
+                // console.log('In usercontroller.js for login: Session userId:', req.session.userId); // Debug logging
     
-                // Explicitly save the session before redirecting
-                req.session.save(err => {
-                    if (err) {
-                        // Handle error
-                        console.error('Error saving session:', err);
-                        return res.status(500).send('Internal Server Error');
-                    }
-                    // Only redirect after the session has been saved
-                    res.redirect('/dashboard');
-                });
+                // // Explicitly save the session before redirecting
+                // req.session.save(err => {
+                //     if (err) {
+                //         // Handle error
+                //         console.error('Error saving session:', err);
+                //         return res.status(500).send('Internal Server Error');
+                //     }
+                //     // Only redirect after the session has been saved
+                //     res.redirect('/dashboard');
+                // });
+
+                req.session.save(()=>{
+                    req.session.userId = user.id;
+                    req.session.loggedIn = true;
+                    res.status(200).json(user)
+                })
             } else {
                 console.log('User not found');
                 res.status(401).render('login', { errorMessage: "User not found" });

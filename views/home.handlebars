@@ -10,7 +10,7 @@
         <!-- Make the post title a link to the post's detail page -->
         <h2 class="post-title"><a href="/posts/{{this.id}}">{{this.title}}</a></h2>
         <div class="post-date-author">
-          <span class="post-date">{{formatDate this.createdAt "MMM dd, yyyy"}}</span>
+          <span class="post-date">{{formatDate createdAt}}</span>
           <span class="post-author">Posted by {{this.User.username}}</span>
         </div>
       </div>

@@ -10,7 +10,7 @@ const dashboardRoutes = require('./dashboardroutes');
 const UserController = require('../controllers/usercontroller'); // Ensure correct path
 
 // Temporary route to test database connection
-router.get('/test-db-connection', UserController.testDbConnection);
+//router.get('/test-db-connection', UserController.testDbConnection);
 
 
 // Mount other routers
