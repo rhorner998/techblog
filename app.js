@@ -38,7 +38,7 @@ app.use(session({
         db: sequelize,
     }),
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: { 
         secure: process.env.NODE_ENV === "production", // Use secure cookies in production (over HTTPS)
         maxAge: 3600000, // Example: 1 hour
