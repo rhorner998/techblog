@@ -19,10 +19,10 @@ const UserController = {
             req.session.save(()=>{
                 req.session.userId = newUser.id;
                 req.session.loggedIn = true;
-                res.status(200).json(newUser)
+                // res.status(200).json(newUser)
+                res.redirect('/dashboard');                
             })
             // Set session and redirect to dashboard
- 
             //res.redirect('/dashboard');
         } catch (error) {
             console.error('Error registering user:', error);
@@ -48,27 +48,6 @@ const UserController = {
         }
     },
 
-    // async login(req, res) {
-    //     try {
-    //         console.log('Attempting to log in user');
-    //         const { username, password } = req.body;
-    //         console.log('Received login request for username:', username);
-    //         // Find user in the database
-    //         const user = await User.findOne({ where: { username } });
-    //         if (user && await bcrypt.compare(password, user.password)) {
-    //             console.log('User logged in successfully:', user);
-    //             req.session.userId = user.id;
-    //             res.locals.loggedIn = true;
-    //             res.redirect('/dashboard');
-    //         } else {
-    //             console.log('Invalid login credentials');
-    //             res.status(401).render('login', { errorMessage: "Invalid credentials" });
-    //         }
-    //     } catch (error) {
-    //         console.error('Error logging in user:', error);
-    //         res.status(500).render('login', { errorMessage: "Failed to log in" });
-    //     }
-    // },
     async login(req, res) {
         try {
             console.log('Attempting to log in user for testing');
@@ -80,21 +59,6 @@ const UserController = {
     
             if (user) {
                 console.log('User logged in successfully (for testing):', user);
-                // Directly set the session userId without checking the password
-                // req.session.userId = user.id;
-                // console.log('In usercontroller.js for login: Session userId:', req.session.userId); // Debug logging
-    
-                // // Explicitly save the session before redirecting
-                // req.session.save(err => {
-                //     if (err) {
-                //         // Handle error
-                //         console.error('Error saving session:', err);
-                //         return res.status(500).send('Internal Server Error');
-                //     }
-                //     // Only redirect after the session has been saved
-                //     res.redirect('/dashboard');
-                // });
-
                 req.session.save(()=>{
                     req.session.userId = user.id;
                     req.session.loggedIn = true;

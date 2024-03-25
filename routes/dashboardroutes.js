@@ -3,6 +3,17 @@ const router = express.Router();
 const { Post } = require('../models');
 const { ensureAuthenticated } = require('../middleware/authmiddleware');
 
+
+function checkLoggin(req,res,next){
+    
+    console.log("FFFFFFFFFFFFFFF",req.session)
+    if(!req.session.userId){
+        res.redirect('/users/login')
+    }else{
+       next() 
+    }
+}
+
 // Logging middleware to check session info on each dashboard-related request
 router.use((req, res, next) => {
   console.log(`Dashboard Route Request - Session ID: ${req.sessionID}`);
@@ -10,7 +21,7 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get('/',async (req, res) => {
+router.get('/',checkLoggin, async (req, res) => {
     console.log("AAAAAAAAAAAAAAAA",req.session)
     console.log('In Dashboardroutes.js for get: Session userId:', req.session.userId);
     try {
